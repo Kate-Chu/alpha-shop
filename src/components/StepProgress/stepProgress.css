@@ -1,0 +1,14 @@
+.icon-border {
+  padding: 4px 8px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.number-icon {
+  font-size: 12px;
+}
+
+.hr {
+  width: 5rem;
+  border: 2px solid black;
+}
