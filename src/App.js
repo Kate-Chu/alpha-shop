@@ -1,9 +1,9 @@
 import "./styles.css";
 import Header from "./components/Header";
 import StepProgress from "./components/StepProgress";
-import Mail from "./components/Step1_Mail";
-import Shipping from "./components/Step2_Shipping";
-import Payment from "./components/Step3_Payment";
+import Mail from "./components/Mail";
+import Shipping from "./components/Shipping";
+import Payment from "./components/Payment";
 import ProgressControl from "./components/ProgressControl";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
