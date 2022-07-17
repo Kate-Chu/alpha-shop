@@ -3,7 +3,7 @@ import "./cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function Cart() {
+const Cart = () => {
   return (
     <div className="card border p-3 pb-0">
       <h5 className="mb-3">購物籃</h5>
@@ -55,4 +55,6 @@ export default function Cart() {
       </div>
     </div>
   );
-}
+};
+
+export default Cart;

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Header() {
+const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light p-lg-4">
       <button
@@ -25,4 +25,6 @@ export default function Header() {
       </div>
     </nav>
   );
-}
+};
+
+export default Header;

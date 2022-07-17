@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Shipping() {
+const Shipping = () => {
   return (
     <div className="card border-0 my-5" data-step="2">
       <h4 className="mb-3">運送方式</h4>
@@ -37,7 +37,6 @@ export default function Shipping() {
             type="radio"
             name="shipping"
             id="DHL-shipping"
-            checked
           />
         </div>
         <div className="col-lg-11 ms-2">
@@ -55,4 +54,6 @@ export default function Shipping() {
       </div>
     </div>
   );
-}
+};
+
+export default Shipping;

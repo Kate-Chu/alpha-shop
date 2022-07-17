@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Payment() {
+const Payment = () => {
   return (
     <div className="card border-0 my-5" data-step="3">
       <h4 className="mb-3">付款資訊</h4>
@@ -56,4 +56,6 @@ export default function Payment() {
       </div>
     </div>
   );
-}
+};
+
+export default Payment;

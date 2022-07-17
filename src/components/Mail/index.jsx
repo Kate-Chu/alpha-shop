@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Mail() {
+const Mail = () => {
   return (
     <div className="card border-0 my-5" data-step="1">
       <h4 className="mb-3">寄送地址</h4>
@@ -55,7 +55,7 @@ export default function Mail() {
           <label for="county" className="p-1">
             縣市
           </label>
-          <select class="form-control" id="county">
+          <select className="form-control" id="county">
             <option>請選擇縣市</option>
           </select>
         </div>
@@ -73,4 +73,6 @@ export default function Mail() {
       </div>
     </div>
   );
-}
+};
+
+export default Mail;
