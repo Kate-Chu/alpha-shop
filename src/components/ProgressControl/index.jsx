@@ -3,26 +3,32 @@ import "./progressControl.css";
 
 type ProgressControlProps = {
   step: number,
-  atPrevStep: Function,
-  atNextStep: Function,
+  atStepChange: () => void,
 };
 
-const ProgressControl: React.FC<ProgressControlProps> = ({
-  step,
-  atPrevStep,
-  atNextStep,
-}) => {
+const ProgressControl: React.FC<ProgressControlProps> = (props) => {
+  const { step, atStepChange } = props;
+  const BUTTON_SETTINGS = {
+    1: {
+      section_className: "border-top pt-4 d-flex justify-content-end",
+      next_button_text: "下一步 ➜",
+    },
+    2: {
+      section_className: "border-top pt-4 d-flex justify-content-between",
+      next_button_text: "下一步 ➜",
+    },
+    3: {
+      section_className: "border-top pt-4 d-flex justify-content-between",
+      next_button_text: "確認下單",
+    },
+  };
   return (
-    <section
-      className={`border-top pt-4 d-flex ${
-        step !== 1 ? "justify-content-between" : "justify-content-end"
-      }`}
-    >
+    <section className={BUTTON_SETTINGS[step].section_className}>
       {step !== 1 && (
         <button
           type="button"
           className="btn btn-progress-prev"
-          onClick={atPrevStep}
+          onClick={() => atStepChange(-1)}
         >
           &larr; 上一步
         </button>
@@ -31,9 +37,9 @@ const ProgressControl: React.FC<ProgressControlProps> = ({
         <button
           type="button"
           className="btn btn-progress-next"
-          onClick={atNextStep}
+          onClick={() => atStepChange(1)}
         >
-          {step === 3 ? "確認下單" : "下一步 ➜"}
+          {BUTTON_SETTINGS[step].next_button_text}
         </button>
       }
     </section>

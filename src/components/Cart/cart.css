@@ -1,3 +1,8 @@
+.card__lineItem {
+  height: 15rem;
+  overflow-y: scroll;
+}
+
 .item-img {
   height: 6rem;
   width: 6rem;

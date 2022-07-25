@@ -6,7 +6,7 @@ const Payment = () => {
       <h4 className="mb-3">付款資訊</h4>
       <div className="row">
         <div className="form-group col-lg-8">
-          <label for="card-name" className="p-1 fw-bolder text-secondary">
+          <label htmlFor="card-name" className="p-1 fw-bolder text-secondary">
             持卡人姓名
           </label>
           <input
@@ -19,7 +19,7 @@ const Payment = () => {
       </div>
       <div className="row mt-3">
         <div className="form-group col-lg-8">
-          <label for="card-number" className="p-1 fw-bolder text-secondary">
+          <label htmlFor="card-number" className="p-1 fw-bolder text-secondary">
             電話
           </label>
           <input
@@ -32,7 +32,7 @@ const Payment = () => {
       </div>
       <div className="row mt-3">
         <div className="form-group col-lg-6">
-          <label for="expire-date" className="p-1 fw-bolder text-secondary">
+          <label htmlFor="expire-date" className="p-1 fw-bolder text-secondary">
             有效期限
           </label>
           <input
@@ -43,7 +43,7 @@ const Payment = () => {
           />
         </div>
         <div className="form-group col-lg-6">
-          <label for="card-code" className="p-1 fw-bolder text-secondary">
+          <label htmlFor="card-code" className="p-1 fw-bolder text-secondary">
             CVC / CCV
           </label>
           <input

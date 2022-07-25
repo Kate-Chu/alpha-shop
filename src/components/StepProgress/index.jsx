@@ -4,52 +4,97 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const StepProgress = ({ step }) => {
+  const PROGRESS_SETTINGS = {
+    1: [
+      {
+        icon: 1,
+        text: "寄送地址",
+        backgroundColor: "bg-black",
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      {
+        icon: 2,
+        text: "運送方式",
+        backgroundColor: null,
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
+    ],
+    2: [
+      {
+        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+        text: "寄送地址",
+        backgroundColor: "bg-black",
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      {
+        icon: 2,
+        text: "運送方式",
+        backgroundColor: "bg-black",
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
+    ],
+    3: [
+      {
+        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+        text: "寄送地址",
+        backgroundColor: "bg-black",
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      {
+        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+        text: "運送方式",
+        backgroundColor: "bg-black",
+        hr: (
+          <span>
+            <hr className="hr mx-2" />
+          </span>
+        ),
+      },
+      { icon: 3, text: "付款資訊", backgroundColor: "bg-black", hr: null },
+    ],
+  };
+
+  const progress = PROGRESS_SETTINGS[step].map((item, index) => {
+    return (
+      <div className="d-flex align-items-center" key={index}>
+        <div>
+          <span className={`icon-border fs-6 ${item.backgroundColor}`}>
+            {item.icon}
+          </span>
+          <span className="me-3 ms-2">{item.text}</span>
+        </div>
+        {item.hr}
+      </div>
+    );
+  });
+
   return (
     <div className="mt-4">
       <h3 className="mb-3">結帳</h3>
       <div className="line-item d-flex justify-content-between mt-5 w-100">
-        <div className="d-flex align-items-center">
-          <div>
-            <span className={"icon-border fs-6 bg-black"}>
-              {step !== 1 ? (
-                <FontAwesomeIcon icon={faCheck} className="number-icon" />
-              ) : (
-                1
-              )}
-            </span>
-            <span className="me-3 ms-2">寄送地址</span>
-          </div>
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        </div>
-        <div className="d-flex align-items-center">
-          <div>
-            <span
-              className={`icon-border fs-6 ${step === 1 ? "" : "bg-black"}`}
-            >
-              {step === 3 ? (
-                <FontAwesomeIcon icon={faCheck} className="number-icon" />
-              ) : (
-                2
-              )}
-            </span>
-            <span className="me-3 ms-2">運送方式</span>
-          </div>
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        </div>
-        <div className="d-flex align-items-center">
-          <div>
-            <span
-              className={`icon-border fs-6 ${step === 3 ? "bg-black" : ""}`}
-            >
-              3
-            </span>
-            <span className="me-3 ms-2">付款資訊</span>
-          </div>
-        </div>
+        {progress}
       </div>
     </div>
   );

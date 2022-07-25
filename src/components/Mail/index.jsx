@@ -6,7 +6,7 @@ const Mail = () => {
       <h4 className="mb-3">寄送地址</h4>
       <div className="row">
         <div className="form-group col-lg-4">
-          <label for="title" className="p-1">
+          <label htmlFor="title" className="p-1">
             稱謂
           </label>
           <select className="form-control" id="title">
@@ -15,7 +15,7 @@ const Mail = () => {
           </select>
         </div>
         <div className="form-group col-lg-8">
-          <label for="name" className="p-1">
+          <label htmlFor="name" className="p-1">
             姓名
           </label>
           <input
@@ -28,7 +28,7 @@ const Mail = () => {
       </div>
       <div className="row mt-3">
         <div className="form-group col-lg-6">
-          <label for="phone" className="p-1">
+          <label htmlFor="phone" className="p-1">
             電話
           </label>
           <input
@@ -39,7 +39,7 @@ const Mail = () => {
           />
         </div>
         <div className="form-group col-lg-6">
-          <label for="email" className="p-1">
+          <label htmlFor="email" className="p-1">
             Email
           </label>
           <input
@@ -52,7 +52,7 @@ const Mail = () => {
       </div>
       <div className="row mt-3">
         <div className="form-group col-lg-4">
-          <label for="county" className="p-1">
+          <label htmlFor="county" className="p-1">
             縣市
           </label>
           <select className="form-control" id="county">
@@ -60,7 +60,7 @@ const Mail = () => {
           </select>
         </div>
         <div className="form-group col-lg-8">
-          <label for="address" className="p-1">
+          <label htmlFor="address" className="p-1">
             地址
           </label>
           <input

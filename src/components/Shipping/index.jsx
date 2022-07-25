@@ -14,13 +14,12 @@ const Shipping = () => {
             type="radio"
             name="shipping"
             id="standard-shipping"
-            checked
           />
         </div>
         <div className="col-lg-11 ms-2">
           <label
             className="form-check-label row align-items-center"
-            for="standard-shipping"
+            htmlFor="standard-shipping"
           >
             <div className="col-lg-10">
               <div>標準運送</div>
@@ -42,7 +41,7 @@ const Shipping = () => {
         <div className="col-lg-11 ms-2">
           <label
             className="form-check-label row align-items-center"
-            for="DHL-shipping"
+            htmlFor="DHL-shipping"
           >
             <div className="col-lg-10">
               <div>DHL 貨運</div>

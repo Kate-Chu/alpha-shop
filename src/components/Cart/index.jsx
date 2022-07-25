@@ -1,30 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import cx from "classnames";
 import "./cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Cart = () => {
-  return (
-    <div className="card border p-3 pb-0">
-      <h5 className="mb-3">購物籃</h5>
-      <div className="line-item d-flex align-items-top pt-3 mb-4">
+const Cart = (props) => {
+  const [goods, setGoods] = useState(props.GOODS);
+  let total = 0;
+
+  const atQuantityChange = (id, num) => {
+    const newGoods = goods.map((item) => {
+      if (item.id === id && item.quantity + num > 0) {
+        return {
+          ...item,
+          quantity: item.quantity + num,
+        };
+      }
+      return item;
+    });
+    return setGoods(newGoods);
+  };
+
+  const lineItems = goods.map((item) => {
+    total += item.price * item.quantity;
+    return (
+      <div className="line-item d-flex align-items-top pt-3 mb-4" key={item.id}>
         <div className="col-lg-3">
-          <img
-            src="https://diz36nn4q02zr.cloudfront.net/webapi/images/r/SalePageDesc/7351762/6.jpg?ts=123955"
-            alt="item-img"
-            className="item-img"
-          />
+          <img src={item.img} alt="item-img" className="item-img" />
         </div>
         <div className="col-lg-7">
-          <p className="fs-6">彩色混紡溫暖感毛絨開襟罩衫</p>
+          <p className="fs-6">{item.name}</p>
           <div className="w-75 d-flex align-items-center justify-content-between">
-            <button type="button" className="btn btn-light btn-cart">
+            <button
+              type="button"
+              className="btn btn-light btn-cart"
+              onClick={() => atQuantityChange(item.id, -1)}
+            >
               <span>
                 <FontAwesomeIcon icon={faMinus} />
               </span>
             </button>
-            <span className=""> 1 </span>
-            <button type="button" className="btn btn-light btn-cart">
+            <span> {item.quantity} </span>
+            <button
+              type="button"
+              className="btn btn-light btn-cart"
+              onClick={() => atQuantityChange(item.id, 1)}
+            >
               <span>
                 <FontAwesomeIcon icon={faPlus} />
               </span>
@@ -40,20 +61,29 @@ const Cart = () => {
           </div>
         </div>
         <div className="col-lg-2 fw-bolder">
-          &#36; <span id="total">1,299</span>
+          &#36; <span id="total">{item.price * item.quantity}</span>
         </div>
       </div>
-      <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
-        <div className="col-lg-10">運費</div>
-        <div className="col-lg-2 fw-bolder">免費</div>
-      </div>
-      <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
-        <div className="col-lg-10">小記</div>
-        <div className="col-lg-2 fw-bolder">
-          &#36; <span id="total">0</span>
+    );
+  });
+
+  return (
+    <section className="col-lg-5">
+      <div className="card border p-3 pb-0">
+        <h5 className="mb-3">購物籃</h5>
+        <div className={cx.card__lineItem}>{lineItems}</div>
+        <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
+          <div className="col-lg-10">運費</div>
+          <div className="col-lg-2 fw-bolder">免費</div>
+        </div>
+        <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
+          <div className="col-lg-10">小記</div>
+          <div className="col-lg-2 fw-bolder">
+            &#36; <span id="total">{total}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

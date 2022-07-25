@@ -1,49 +1,40 @@
-import React from "react";
+import React, { memo } from "react";
 import "./styles.css";
 import Header from "./components/Header";
-import StepProgress from "./components/StepProgress";
-import Mail from "./components/Mail";
-import Shipping from "./components/Shipping";
-import Payment from "./components/Payment";
-import ProgressControl from "./components/ProgressControl";
+import Form from "./components/Form";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const [step, setStep] = React.useState(1);
+  const HeaderMemo = memo(Header);
+  const CartMemo = memo(Cart);
+  const FooterMemo = memo(Footer);
 
-  const atPrevStep = () => {
-    if (step === 1) return;
-    setStep((prev) => prev - 1);
-  };
-
-  const atNextStep = () => {
-    if (step === 3) return;
-    setStep((prev) => prev + 1);
-  };
+  const GOODS = [
+    {
+      id: "1",
+      name: "貓咪罐罐",
+      img: "https://picsum.photos/300/300?text=1",
+      price: 100,
+      quantity: 2,
+    },
+    {
+      id: "2",
+      name: "貓咪干干",
+      img: "https://picsum.photos/300/300?text=2",
+      price: 200,
+      quantity: 1,
+    },
+  ];
 
   return (
     <div className="container">
-      <Header />
+      <HeaderMemo />
       <section className="my-5 d-flex row align-items-end justify-content-between">
-        <section className="col-lg-6">
-          <StepProgress step={step} />
-          <form className="progress-form">
-            {step === 1 && <Mail />}
-            {step === 2 && <Shipping />}
-            {step === 3 && <Payment />}
-          </form>
-          <ProgressControl
-            step={step}
-            atPrevStep={atPrevStep}
-            atNextStep={atNextStep}
-          />
-        </section>
-        <section className="col-lg-5">
-          <Cart />
-        </section>
+        <Form />
+        <CartMemo GOODS={GOODS} />
       </section>
-      <Footer />
+      <FooterMemo />
     </div>
   );
 }
