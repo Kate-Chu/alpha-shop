@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer() {
+const Footer = React.memo(() => {
   return (
     <footer>
       <nav className="navbar fixed-bottom navbar-light bg-light p-0">
@@ -8,4 +8,6 @@ export default function Footer() {
       </nav>
     </footer>
   );
-}
+});
+
+export default Footer;

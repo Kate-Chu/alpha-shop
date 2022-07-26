@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = React.memo(() => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light p-lg-4">
       <button
@@ -25,6 +25,6 @@ const Header = () => {
       </div>
     </nav>
   );
-};
+});
 
 export default Header;

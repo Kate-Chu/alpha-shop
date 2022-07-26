@@ -3,7 +3,7 @@ import "./stepProgress.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const StepProgress = ({ step }) => {
+const StepProgress = React.memo(({ step }) => {
   const PROGRESS_SETTINGS = {
     1: [
       {
@@ -98,6 +98,6 @@ const StepProgress = ({ step }) => {
       </div>
     </div>
   );
-};
+});
 
 export default StepProgress;

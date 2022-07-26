@@ -4,12 +4,12 @@ import "./cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Cart = (props) => {
-  const [goods, setGoods] = useState(props.GOODS);
+const Cart = React.memo((props) => {
+  const [items, setItems] = useState(props.items);
   let total = 0;
 
-  const atQuantityChange = (id, num) => {
-    const newGoods = goods.map((item) => {
+  const onChangeQuantity = (id, num) => {
+    const newItems = items.map((item) => {
       if (item.id === id && item.quantity + num > 0) {
         return {
           ...item,
@@ -18,10 +18,10 @@ const Cart = (props) => {
       }
       return item;
     });
-    return setGoods(newGoods);
+    return setItems(newItems);
   };
 
-  const lineItems = goods.map((item) => {
+  const listItem = items.map((item) => {
     total += item.price * item.quantity;
     return (
       <div className="line-item d-flex align-items-top pt-3 mb-4" key={item.id}>
@@ -34,7 +34,7 @@ const Cart = (props) => {
             <button
               type="button"
               className="btn btn-light btn-cart"
-              onClick={() => atQuantityChange(item.id, -1)}
+              onClick={() => onChangeQuantity(item.id, -1)}
             >
               <span>
                 <FontAwesomeIcon icon={faMinus} />
@@ -44,7 +44,7 @@ const Cart = (props) => {
             <button
               type="button"
               className="btn btn-light btn-cart"
-              onClick={() => atQuantityChange(item.id, 1)}
+              onClick={() => onChangeQuantity(item.id, 1)}
             >
               <span>
                 <FontAwesomeIcon icon={faPlus} />
@@ -71,7 +71,7 @@ const Cart = (props) => {
     <section className="col-lg-5">
       <div className="card border p-3 pb-0">
         <h5 className="mb-3">購物籃</h5>
-        <div className={cx.card__lineItem}>{lineItems}</div>
+        <div className={cx.card__lineItem}>{listItem}</div>
         <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
           <div className="col-lg-10">運費</div>
           <div className="col-lg-2 fw-bolder">免費</div>
@@ -85,6 +85,6 @@ const Cart = (props) => {
       </div>
     </section>
   );
-};
+});
 
 export default Cart;

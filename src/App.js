@@ -6,11 +6,7 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const HeaderMemo = memo(Header);
-  const CartMemo = memo(Cart);
-  const FooterMemo = memo(Footer);
-
-  const GOODS = [
+  const ITEMS = [
     {
       id: "1",
       name: "貓咪罐罐",
@@ -29,12 +25,12 @@ export default function App() {
 
   return (
     <div className="container">
-      <HeaderMemo />
+      <Header />
       <section className="my-5 d-flex row align-items-end justify-content-between">
         <Form />
-        <CartMemo GOODS={GOODS} />
+        <Cart items={ITEMS} />
       </section>
-      <FooterMemo />
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Shipping from "../Shipping";
 import Payment from "../Payment";
 import ProgressControl from "../ProgressControl";
 
-const Form = () => {
+const Form = memo(() => {
   const [step, setStep] = React.useState(1);
   const StepProgressMemo = memo(StepProgress);
   const ProgressControlMemo = memo(ProgressControl);
@@ -27,6 +27,6 @@ const Form = () => {
   }, [step]);
 
   return formSection;
-};
+});
 
 export default Form;

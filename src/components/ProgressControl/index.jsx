@@ -6,7 +6,7 @@ type ProgressControlProps = {
   atStepChange: () => void,
 };
 
-const ProgressControl: React.FC<ProgressControlProps> = (props) => {
+const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
   const { step, atStepChange } = props;
   const BUTTON_SETTINGS = {
     1: {
@@ -44,6 +44,6 @@ const ProgressControl: React.FC<ProgressControlProps> = (props) => {
       }
     </section>
   );
-};
+});
 
 export default ProgressControl;

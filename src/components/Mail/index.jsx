@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mail = () => {
+const Mail = React.memo(() => {
   return (
     <div className="card border-0 my-5" data-step="1">
       <h4 className="mb-3">寄送地址</h4>
@@ -73,6 +73,6 @@ const Mail = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Mail;

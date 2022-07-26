@@ -1,6 +1,6 @@
 import React from "react";
 
-const Shipping = () => {
+const Shipping = React.memo(() => {
   return (
     <div className="card border-0 my-5" data-step="2">
       <h4 className="mb-3">運送方式</h4>
@@ -53,6 +53,6 @@ const Shipping = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Shipping;

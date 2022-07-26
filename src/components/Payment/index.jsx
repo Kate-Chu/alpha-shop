@@ -1,6 +1,6 @@
 import React from "react";
 
-const Payment = () => {
+const Payment = React.memo(() => {
   return (
     <div className="card border-0 my-5" data-step="3">
       <h4 className="mb-3">付款資訊</h4>
@@ -56,6 +56,6 @@ const Payment = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Payment;
