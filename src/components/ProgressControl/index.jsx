@@ -3,11 +3,11 @@ import "./progressControl.css";
 
 type ProgressControlProps = {
   step: number,
-  atStepChange: () => void,
+  onChangeStep: () => void,
 };
 
 const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
-  const { step, atStepChange } = props;
+  const { step, onChangeStep } = props;
   const BUTTON_SETTINGS = {
     1: {
       section_className: "border-top pt-4 d-flex justify-content-end",
@@ -28,7 +28,7 @@ const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
         <button
           type="button"
           className="btn btn-progress-prev"
-          onClick={() => atStepChange(-1)}
+          onClick={() => onChangeStep(-1)}
         >
           &larr; 上一步
         </button>
@@ -37,7 +37,7 @@ const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
         <button
           type="button"
           className="btn btn-progress-next"
-          onClick={() => atStepChange(1)}
+          onClick={() => onChangeStep(1)}
         >
           {BUTTON_SETTINGS[step].next_button_text}
         </button>
