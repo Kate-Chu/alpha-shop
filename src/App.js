@@ -1,35 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import Header from "./components/Header";
-import Form from "./components/Form";
+import StepProgress from "./components/StepProgress";
+import Mail from "./components/Mail";
+import Shipping from "./components/Shipping";
+import Payment from "./components/Payment";
 import Cart from "./components/Cart";
+import ProgressControl from "./components/ProgressControl";
 import Footer from "./components/Footer";
+import CartContext from "./context/CartContext";
+import items from "./data/items";
 
 export default function App() {
-  const ITEMS = [
-    {
-      id: "1",
-      name: "貓咪罐罐",
-      img: "https://picsum.photos/300/300?text=1",
-      price: 100,
-      quantity: 2,
-    },
-    {
-      id: "2",
-      name: "貓咪干干",
-      img: "https://picsum.photos/300/300?text=2",
-      price: 200,
-      quantity: 1,
-    },
-  ];
+  const [step, setStep] = useState(1);
+  const FORM_DISPLAY = [<Mail />, <Shipping />, <Payment />];
+
+  const onChangeStep = (num) => {
+    let finalStep = step + num;
+    if (finalStep > 0 && finalStep < 4) setStep(finalStep);
+  };
 
   return (
     <div className="container">
       <Header />
-      <section className="my-5 d-flex row align-items-end justify-content-between">
-        <Form />
-        <Cart items={ITEMS} />
-      </section>
+      <div className="my-5 d-flex row align-items-end justify-content-between">
+        <CartContext.Provider
+          value={{
+            step: step,
+            items: items,
+          }}
+        >
+          <section className="col-lg-6">
+            <StepProgress step={step} />
+            <form className="progress-form">{FORM_DISPLAY[step - 1]}</form>
+            <ProgressControl step={step} onChangeStep={onChangeStep} />
+          </section>
+          <Cart />
+        </CartContext.Provider>
+      </div>
       <Footer />
     </div>
   );
