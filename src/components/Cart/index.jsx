@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useContext, useCallback, useMemo } from "react";
 import cx from "classnames";
 import CartContext from "../../context/CartContext";
 import CartListItem from "./CartListItem";
@@ -31,20 +31,22 @@ const Cart = React.memo((props) => {
 
   const total = items.reduce((prev, cur) => prev + cur.price * cur.quantity, 0);
 
-  const listItem = items.map((item) => {
-    return (
-      <CartListItem
-        key={item.name}
-        id={item.id}
-        name={item.name}
-        img={item.img}
-        price={item.price}
-        quantity={item.quantity}
-        onChangeQuantity={onChangeQuantity}
-        onRemoveItem={onRemoveItem}
-      />
-    );
-  });
+  const listItem = useMemo(() => {
+    return items.map((item) => {
+      return (
+        <CartListItem
+          key={item.name}
+          id={item.id}
+          name={item.name}
+          img={item.img}
+          price={item.price}
+          quantity={item.quantity}
+          onChangeQuantity={onChangeQuantity}
+          onRemoveItem={onRemoveItem}
+        />
+      );
+    });
+  }, [items, onChangeQuantity, onRemoveItem]);
 
   return (
     <section className="col-lg-5">

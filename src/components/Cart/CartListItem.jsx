@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -51,4 +51,4 @@ const CartListItem = (props) => {
   );
 };
 
-export default CartListItem;
+export default memo(CartListItem);
