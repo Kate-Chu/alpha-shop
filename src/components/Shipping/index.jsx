@@ -1,6 +1,8 @@
 import React from "react";
 
-const Shipping = React.memo(() => {
+const Shipping = React.memo((props) => {
+  const { onSelectShipping } = props;
+
   return (
     <div className="card border-0 my-5" data-step="2">
       <h4 className="mb-3">運送方式</h4>
@@ -10,6 +12,8 @@ const Shipping = React.memo(() => {
       >
         <div className="col-lg-1">
           <input
+            defaultChecked
+            onChange={() => onSelectShipping(0)}
             className="form-check-input mx-2"
             type="radio"
             name="shipping"
@@ -32,6 +36,7 @@ const Shipping = React.memo(() => {
       <div className="form-check border rounded p-3 d-flex align-items-center mt-4">
         <div className="col-lg-1">
           <input
+            onChange={() => onSelectShipping(500)}
             className="form-check-input mx-2"
             type="radio"
             name="shipping"

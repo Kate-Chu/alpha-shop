@@ -1,38 +1,37 @@
-import React, { useState, useContext, useCallback, useMemo } from "react";
+import React, { useContext, useCallback, useMemo } from "react";
 import cx from "classnames";
 import CartContext from "../../context/CartContext";
 import CartListItem from "./CartListItem";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "./cart.css";
+import { cartActions } from "../../store/cartReducer";
+import useCartReducer from "../../store/cartReducer";
 
 const Cart = React.memo((props) => {
   const data = useContext(CartContext);
-  const [items, setItems] = useState(data.items);
+  const shippingFee = data.shippingFee;
+  const [state, dispatch] = useCartReducer();
 
   const onChangeQuantity = useCallback(
     (id, num) => {
-      const newItems = items.map((item) => {
-        if (item.id === id && item.quantity + num > 0) {
-          return {
-            ...item,
-            quantity: item.quantity + num,
-          };
-        }
-        return item;
-      });
-      return setItems(newItems);
+      dispatch({ type: cartActions.changeQuantity, payload: { id, num } });
     },
-    [items]
+    [dispatch]
   );
 
-  const onRemoveItem = useCallback((id) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-  }, []);
+  const onRemoveItem = useCallback(
+    (id) => {
+      dispatch({ type: cartActions.removeItem, payload: { id } });
+    },
+    [dispatch]
+  );
 
-  const total = items.reduce((prev, cur) => prev + cur.price * cur.quantity, 0);
+  const total =
+    shippingFee +
+    state.items.reduce((prev, cur) => prev + cur.price * cur.quantity, 0);
 
   const listItem = useMemo(() => {
-    return items.map((item) => {
+    return state.items.map((item) => {
       return (
         <CartListItem
           key={item.name}
@@ -46,7 +45,7 @@ const Cart = React.memo((props) => {
         />
       );
     });
-  }, [items, onChangeQuantity, onRemoveItem]);
+  }, [state.items, onChangeQuantity, onRemoveItem]);
 
   return (
     <section className="col-lg-5">
@@ -55,7 +54,7 @@ const Cart = React.memo((props) => {
         <div className={cx.card__lineItem}>{listItem}</div>
         <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
           <div className="col-lg-10">運費</div>
-          <div className="col-lg-2 fw-bolder">免費</div>
+          <div className="col-lg-2 fw-bolder">{shippingFee}</div>
         </div>
         <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
           <div className="col-lg-10">小記</div>

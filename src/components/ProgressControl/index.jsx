@@ -22,6 +22,7 @@ const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
       next_button_text: "確認下單",
     },
   };
+
   return (
     <section className={BUTTON_SETTINGS[step].section_className}>
       {step !== 1 && (
