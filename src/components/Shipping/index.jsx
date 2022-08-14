@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../context/CartContext";
 
-const Shipping = React.memo((props) => {
-  const { onSelectShipping } = props;
+const Shipping = React.memo(() => {
+  const { onSelectShipping } = useContext(CartContext);
 
   return (
     <div className="card border-0 my-5" data-step="2">

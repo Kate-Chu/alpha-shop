@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../context/CartContext";
 import "./progressControl.css";
 
 type ProgressControlProps = {
@@ -6,26 +7,28 @@ type ProgressControlProps = {
   onChangeStep: () => void,
 };
 
+const BUTTON_SETTINGS = {
+  1: {
+    section_className: "border-top pt-4 d-flex justify-content-end",
+    next_button_text: "下一步 ➜",
+  },
+  2: {
+    section_className: "border-top pt-4 d-flex justify-content-between",
+    next_button_text: "下一步 ➜",
+  },
+  3: {
+    section_className: "border-top pt-4 d-flex justify-content-between",
+    next_button_text: "確認下單",
+  },
+};
+
 const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
-  const { step, onChangeStep } = props;
-  const BUTTON_SETTINGS = {
-    1: {
-      section_className: "border-top pt-4 d-flex justify-content-end",
-      next_button_text: "下一步 ➜",
-    },
-    2: {
-      section_className: "border-top pt-4 d-flex justify-content-between",
-      next_button_text: "下一步 ➜",
-    },
-    3: {
-      section_className: "border-top pt-4 d-flex justify-content-between",
-      next_button_text: "確認下單",
-    },
-  };
+  const { state, onChangeStep } = useContext(CartContext);
+  console.log(state.step);
 
   return (
-    <section className={BUTTON_SETTINGS[step].section_className}>
-      {step !== 1 && (
+    <section className={BUTTON_SETTINGS[state.step].section_className}>
+      {state.step !== 1 && (
         <button
           type="button"
           className="btn btn-progress-prev"
@@ -40,7 +43,7 @@ const ProgressControl: React.FC<ProgressControlProps> = React.memo((props) => {
           className="btn btn-progress-next"
           onClick={() => onChangeStep(1)}
         >
-          {BUTTON_SETTINGS[step].next_button_text}
+          {BUTTON_SETTINGS[state.step].next_button_text}
         </button>
       }
     </section>

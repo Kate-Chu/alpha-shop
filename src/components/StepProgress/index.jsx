@@ -1,82 +1,85 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../context/CartContext";
 import "./stepProgress.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const StepProgress = React.memo(({ step }) => {
-  const PROGRESS_SETTINGS = {
-    1: [
-      {
-        icon: 1,
-        text: "寄送地址",
-        backgroundColor: "bg-black",
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      {
-        icon: 2,
-        text: "運送方式",
-        backgroundColor: null,
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
-    ],
-    2: [
-      {
-        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
-        text: "寄送地址",
-        backgroundColor: "bg-black",
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      {
-        icon: 2,
-        text: "運送方式",
-        backgroundColor: "bg-black",
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
-    ],
-    3: [
-      {
-        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
-        text: "寄送地址",
-        backgroundColor: "bg-black",
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      {
-        icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
-        text: "運送方式",
-        backgroundColor: "bg-black",
-        hr: (
-          <span>
-            <hr className="hr mx-2" />
-          </span>
-        ),
-      },
-      { icon: 3, text: "付款資訊", backgroundColor: "bg-black", hr: null },
-    ],
-  };
+const PROGRESS_SETTINGS = {
+  1: [
+    {
+      icon: 1,
+      text: "寄送地址",
+      backgroundColor: "bg-black",
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    {
+      icon: 2,
+      text: "運送方式",
+      backgroundColor: null,
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
+  ],
+  2: [
+    {
+      icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+      text: "寄送地址",
+      backgroundColor: "bg-black",
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    {
+      icon: 2,
+      text: "運送方式",
+      backgroundColor: "bg-black",
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    { icon: 3, text: "付款資訊", backgroundColor: null, hr: null },
+  ],
+  3: [
+    {
+      icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+      text: "寄送地址",
+      backgroundColor: "bg-black",
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCheck} className="number-icon" />,
+      text: "運送方式",
+      backgroundColor: "bg-black",
+      hr: (
+        <span>
+          <hr className="hr mx-2" />
+        </span>
+      ),
+    },
+    { icon: 3, text: "付款資訊", backgroundColor: "bg-black", hr: null },
+  ],
+};
 
-  const progress = PROGRESS_SETTINGS[step].map((item, index) => {
+const StepProgress = React.memo(() => {
+  const { state } = useContext(CartContext);
+
+  const progress = PROGRESS_SETTINGS[state.step].map((item, index) => {
     return (
       <div className="d-flex align-items-center" key={index}>
         <div>

@@ -1,33 +1,15 @@
-import React, { useContext, useCallback, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import cx from "classnames";
 import CartContext from "../../context/CartContext";
 import CartListItem from "./CartListItem";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "./cart.css";
-import { cartActions } from "../../store/cartReducer";
-import useCartReducer from "../../store/cartReducer";
 
 const Cart = React.memo((props) => {
-  const data = useContext(CartContext);
-  const shippingFee = data.shippingFee;
-  const [state, dispatch] = useCartReducer();
-
-  const onChangeQuantity = useCallback(
-    (id, num) => {
-      dispatch({ type: cartActions.changeQuantity, payload: { id, num } });
-    },
-    [dispatch]
-  );
-
-  const onRemoveItem = useCallback(
-    (id) => {
-      dispatch({ type: cartActions.removeItem, payload: { id } });
-    },
-    [dispatch]
-  );
+  const { state, onChangeQuantity, onRemoveItem } = useContext(CartContext);
 
   const total =
-    shippingFee +
+    state.shippingFee +
     state.items.reduce((prev, cur) => prev + cur.price * cur.quantity, 0);
 
   const listItem = useMemo(() => {
@@ -54,7 +36,7 @@ const Cart = React.memo((props) => {
         <div className={cx.card__lineItem}>{listItem}</div>
         <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
           <div className="col-lg-10">運費</div>
-          <div className="col-lg-2 fw-bolder">{shippingFee}</div>
+          <div className="col-lg-2 fw-bolder">{state.shippingFee}</div>
         </div>
         <div className="col-lg-12 row align-items-center border-top pt-3 mb-4">
           <div className="col-lg-10">小記</div>
@@ -64,7 +46,7 @@ const Cart = React.memo((props) => {
         </div>
         <div className="col-lg-12 row align-items-center border-top pt-4 mb-4">
           <div className="mt-1">
-            <ProgressBar striped variant="warning" now={33 * data.step} />
+            <ProgressBar striped variant="warning" now={33 * state.step} />
           </div>
         </div>
       </div>
